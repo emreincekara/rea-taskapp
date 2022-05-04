@@ -1,4 +1,4 @@
-﻿using Catalog.API.Data.Common;
+﻿using Catalog.API.Data.Entities.Common;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Catalog.API.Data.Entities

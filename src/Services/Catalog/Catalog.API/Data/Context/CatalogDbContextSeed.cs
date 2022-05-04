@@ -1,4 +1,4 @@
-﻿using Catalog.API.Data.Common;
+﻿using Catalog.API.Data.Entities.Common;
 using Catalog.API.Data.Entities;
 using MongoDB.Driver;
 

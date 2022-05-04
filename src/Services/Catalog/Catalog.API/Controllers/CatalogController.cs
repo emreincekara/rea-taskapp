@@ -6,7 +6,7 @@ using System.Net;
 namespace Catalog.API.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     public class CatalogController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -72,21 +72,22 @@ namespace Catalog.API.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.Created)]
         public async Task<ActionResult<Product>> AddProduct([FromBody] Product product)
         {
             var addedProduct = await _unitOfWork.ProductRepository.AddAsync(product);
-            return CreatedAtRoute("GetProduct", new { id = addedProduct.Id });
+            return CreatedAtRoute("GetProduct", new { id = addedProduct.Id }, addedProduct);
         }
 
         [HttpPut]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> UpdateProduct([FromBody] Product product)
         {
-            return Ok(await _unitOfWork.ProductRepository.UpdateAsync(product, product.Id));
+            return Ok(await _unitOfWork.ProductRepository.UpdateAsync(product));
         }
 
         [HttpDelete("{id:length(36)}", Name = "DeleteProduct")]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> DeleteProductById(string id)
         {

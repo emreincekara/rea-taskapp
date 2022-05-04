@@ -9,6 +9,29 @@ services:
     volumes:
         - mongo_data:/data/db
 
+  customerdb:
+    container_name: customerdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=CustomerDB
+    restart: always
+    ports:
+        - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@domain.com
+      - PGADMIN_DEFAULT_PASSWORD=admin1234
+    restart: always
+    ports:
+        - "5050:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin
+
   catalog.api:
     container_name: catalog.api
     environment:
@@ -18,3 +41,14 @@ services:
       - catalogdb
     ports:
       - "8000:80"
+
+  customer.api:
+    container_name: customer.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:DefaultConnection=Server=customerdb;Port=5432;Database=CustomerDB;User Id=admin;Password=admin1234;"
+    depends_on:
+      - customerdb
+    ports:
+      - "8001:80"
+

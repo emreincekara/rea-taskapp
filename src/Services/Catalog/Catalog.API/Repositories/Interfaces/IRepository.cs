@@ -1,17 +1,17 @@
-﻿using Catalog.API.Data.Common;
+﻿using Catalog.API.Data.Entities.Common;
 using System.Linq.Expressions;
 
 namespace Catalog.API.Repositories.Interfaces
 {
-    public interface IRepository<T> : IDisposable where T : BaseEntity
+    public interface IRepository<TEntity> : IDisposable where TEntity : BaseEntity
     {
-        Task<T> AddAsync(T model);
-        Task<bool> UpdateAsync(T model, string id);
+        Task<TEntity> AddAsync(TEntity model);
+        Task<bool> UpdateAsync(TEntity model);
         Task<bool> DeleteAsync(string id);
 
-        Task<T> GetByIdAsync(string id);
+        Task<TEntity> GetByIdAsync(string id);
 
-        Task<IList<T>> GetAllAsync();
-        Task<IList<T>> GetByAsync(Expression<Func<T, bool>> predicate);
+        Task<IList<TEntity>> GetAllAsync();
+        Task<IList<TEntity>> GetByAsync(Expression<Func<TEntity, bool>> predicate);
     }
 }

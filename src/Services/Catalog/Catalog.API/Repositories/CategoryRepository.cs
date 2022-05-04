@@ -7,7 +7,7 @@ namespace Catalog.API.Repositories
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        public CategoryRepository(ICatalogDbContext context) : base(context)
+        public CategoryRepository(IDatabaseSettings databaseSettings, ICatalogDbContext context) : base(databaseSettings, context)
         {
         }
     }
