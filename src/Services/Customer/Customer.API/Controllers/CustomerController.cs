@@ -1,6 +1,5 @@
 ﻿using Customer.API.Data.Entities;
 using Customer.API.Repositories.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -18,6 +17,7 @@ namespace Customer.API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(IList<CustomerDetail>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IList<CustomerDetail>>> GetCustomers()
         {
@@ -75,8 +75,7 @@ namespace Customer.API.Controllers
 
         [HttpDelete("{id:length(36)}", Name = "DeleteCustomer")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(CustomerDetail), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> DeleteCustomerById(string id)
+        public async Task<IActionResult> DeleteCustomer(string id)
         {
             if (!await _unitOfWork.CustomerRepository.AnyAsync(x => x.Id.ToString() == id))
                 return NotFound();

@@ -1,20 +1,19 @@
 version: '3.4'
 
 services:
-  catalogdb:
-    container_name: catalogdb
+  mongodb:
+    container_name: mongodb
     restart: always
     ports:
       - "27017:27017"
     volumes:
         - mongo_data:/data/db
 
-  customerdb:
-    container_name: customerdb
+  postgresdb:
+    container_name: postgresdb
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin1234
-      - POSTGRES_DB=CustomerDB
     restart: always
     ports:
         - "5432:5432"
@@ -36,9 +35,9 @@ services:
     container_name: catalog.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=mongodb://catalogdb:27017"
+      - "DatabaseSettings:ConnectionString=mongodb://mongodb:27017"
     depends_on:
-      - catalogdb
+      - mongodb
     ports:
       - "8000:80"
 
@@ -46,9 +45,20 @@ services:
     container_name: customer.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:DefaultConnection=Server=customerdb;Port=5432;Database=CustomerDB;User Id=admin;Password=admin1234;"
+      - "ConnectionStrings:DefaultConnection=Server=postgresdb;Port=5432;Database=CustomerDB;User Id=admin;Password=admin1234;"
     depends_on:
-      - customerdb
+      - postgresdb
     ports:
       - "8001:80"
+
+
+  order.api:
+    container_name: order.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:DefaultConnection=Server=postgresdb;Port=5432;Database=OrderDB;User Id=admin;Password=admin1234;"
+    depends_on:
+      - postgresdb
+    ports:
+      - "8002:80"
 
