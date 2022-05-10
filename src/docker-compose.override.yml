@@ -51,7 +51,6 @@ services:
     ports:
       - "8001:80"
 
-
   order.api:
     container_name: order.api
     environment:
@@ -62,3 +61,13 @@ services:
     ports:
       - "8002:80"
 
+  ocelotapigateway:
+    container_name: ocelotapigateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+        - catalog.api
+        - customer.api
+        - order.api
+    ports:
+      - "8010:80"
