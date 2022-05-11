@@ -197,7 +197,7 @@ Aşağıdaki araçlara ihtiyacınız olacak:
 | `id`      | `uuid` | **Gerekli**. |
 
 ##### Yanıt
-```json
+```bash
 Boolean: true | false
 ```
 ### Order API
