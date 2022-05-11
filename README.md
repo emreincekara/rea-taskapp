@@ -44,7 +44,7 @@ Aşağıdaki araçlara ihtiyacınız olacak:
 
 #### Tüm öğeleri getir
 
-```http
+```bash
   GET /catalog
 ```
 ##### Yanıt
@@ -67,7 +67,7 @@ Aşağıdaki araçlara ihtiyacınız olacak:
 
 #### Öğeyi getir veya Sil
 
-```http
+```bash
   GET|DELETE /catalog/${id}
 ```
 
@@ -93,7 +93,7 @@ Aşağıdaki araçlara ihtiyacınız olacak:
 
 #### Öğe Ekle veya Güncelle
 
-```http
+```bash
   POST|PUT /catalog
 ```
 ##### İstek
@@ -108,7 +108,7 @@ Aşağıdaki araçlara ihtiyacınız olacak:
 
 #### Ürün adına göre öğeyi getir
 
-```http
+```bash
   GET /catalog/getProductByName/${name}
 ```
 
@@ -118,7 +118,7 @@ Aşağıdaki araçlara ihtiyacınız olacak:
 
 #### Kategori adına göre öğeyi getir
 
-```http
+```bash
   GET /catalog/getProductByCategory/${categoryName}
 ```
 
@@ -130,7 +130,7 @@ Aşağıdaki araçlara ihtiyacınız olacak:
 
 #### Tüm öğeleri getir
 
-```http
+```bash
   GET /customer
 ```
 ##### Yanıt
@@ -154,7 +154,7 @@ Aşağıdaki araçlara ihtiyacınız olacak:
 
 #### Öğeyi getir veya Sil
 
-```http
+```bash
   GET|DELETE /customer/${id}
 ```
 
@@ -164,7 +164,7 @@ Aşağıdaki araçlara ihtiyacınız olacak:
 
 #### Öğe Ekle veya Güncelle
 
-```http
+```bash
   POST|PUT /customer
 ```
 ##### İstek
@@ -188,7 +188,7 @@ Aşağıdaki araçlara ihtiyacınız olacak:
 
 #### Doğrulama Kontrolü
 
-```http
+```bash
   GET /customer/validate/${id}
 ```
 
@@ -204,7 +204,7 @@ Boolean: true | false
 
 #### Tüm öğeleri getir
 
-```http
+```bash
   GET /order
 ```
 ##### Yanıt
@@ -224,7 +224,7 @@ Boolean: true | false
 
 #### Öğeyi getir veya Sil
 
-```http
+```bash
   GET|DELETE /order/${id}
 ```
 
@@ -234,7 +234,7 @@ Boolean: true | false
 
 #### Öğe Ekle veya Güncelle
 
-```http
+```bash
   POST|PUT /order
 ```
 ##### İstek
@@ -254,7 +254,7 @@ Boolean: true | false
 
 #### CustomerId'ye göre öğeyi getir
 
-```http
+```bash
   GET /order/getOrdersByCustomerId/${customerId}
 ```
 
@@ -264,7 +264,7 @@ Boolean: true | false
 
 #### Id'ye göre Status değerini güncelle
 
-```http
+```bash
   GET /order/${id}/${status}
 ```
 
