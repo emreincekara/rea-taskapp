@@ -41,7 +41,7 @@ namespace Catalog.API.Controllers
             return Ok(product);
         }
 
-        [HttpGet("{name}", Name = "GetProductByName")]
+        [HttpGet("[action]/{name}", Name = "GetProductByName")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(IList<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IList<Product>>> GetProductByName(string name)
@@ -56,7 +56,7 @@ namespace Catalog.API.Controllers
             return Ok(products);
         }
 
-        [HttpGet("{categoryName}", Name = "GetProductByCategoryName")]
+        [HttpGet("[action]/{categoryName}", Name = "GetProductByCategoryName")]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductByCategory(string categoryName)
         {

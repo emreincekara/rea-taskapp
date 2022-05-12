@@ -13,6 +13,6 @@ namespace Catalog.API.Data.Entities
         public string Name { get; set; }
 
         [BsonIgnore]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product>? Products { get; set; }
     }
 }

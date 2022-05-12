@@ -21,7 +21,7 @@ namespace Catalog.API.Repositories
 
         public async Task<TEntity> AddAsync(TEntity model)
         {
-            model.Id = new Guid().ToString();
+            model.Id = Guid.NewGuid().ToString();
             await _collection.InsertOneAsync(model);
             return model;
         }

@@ -12,6 +12,6 @@ namespace Catalog.API.Data.Entities
         public string CategoryId { get; set; }
 
         [BsonIgnore]
-        public virtual Category Category { get; set; }
+        public virtual Category? Category { get; set; }
     }
 }
